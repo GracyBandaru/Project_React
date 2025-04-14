@@ -1,0 +1,118 @@
+.press {
+    padding: 4rem 2rem;
+    background: white;
+  }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .section-header h2 {
+    font-size: 2.5rem;
+    color: #4a6fa5;
+    margin-bottom: 1rem;
+  }
+  
+  .section-header p {
+    color: #666;
+    font-size: 1.1rem;
+  }
+  
+  .press-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .press-card {
+    background: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    border-left: 4px solid #4a6fa5;
+  }
+  
+  .press-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  }
+  
+  .press-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .press-logo {
+    height: 40px;
+    max-width: 120px;
+    object-fit: contain;
+    filter: grayscale(100%);
+    opacity: 0.8;
+    transition: all 0.3s;
+  }
+  
+  .press-card:hover .press-logo {
+    filter: grayscale(0%);
+    opacity: 1;
+  }
+  
+  .press-meta {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 0.5rem;
+  }
+  
+  .source {
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  .new-badge {
+    background: #4a6fa5;
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .excerpt {
+    color: #555;
+    line-height: 1.6;
+    margin: 1rem 0;
+  }
+  
+  .press-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #4a6fa5;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  
+  .press-link:hover {
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 768px) {
+    .press {
+      padding: 2rem 1rem;
+    }
+    
+    .press-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .press-logo {
+      margin-bottom: 1rem;
+    }
+  }

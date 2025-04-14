@@ -1,0 +1,272 @@
+/* Testimonials.css */
+.testimonials {
+    padding: 5rem 2rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .testimonials::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      radial-gradient(circle at 10% 20%, rgba(74, 111, 165, 0.05) 0%, transparent 20%),
+      radial-gradient(circle at 90% 80%, rgba(74, 111, 165, 0.05) 0%, transparent 20%);
+    background-size: 300px 300px;
+    opacity: 0.6;
+    z-index: 0;
+  }
+  
+  /* Add this to ensure content stays above the background */
+  .testimonials > * {
+    position: relative;
+    z-index: 1;
+  }
+  .section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .section-header h2::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: #4a6fa5;
+    border-radius: 2px;
+  }
+  
+  .section-header p {
+    font-size: 1.1rem;
+    color: #7f8c8d;
+    margin-bottom: 3rem;
+  }
+  
+  .carousel-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 0 3rem;
+  }
+  
+  .carousel-track {
+    position: relative;
+    height: 400px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .testimonial-card {
+    position: absolute;
+    width: 100%;
+    padding: 2.5rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(74, 111, 165, 0.1);
+  }
+  
+  .testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+  }
+  
+  .quote-icon {
+    font-size: 2rem;
+    color: #4a6fa5;
+    opacity: 0.2;
+    margin-bottom: 1.5rem;
+  }
+  
+  .rating {
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.3rem;
+  }
+  
+  .star-filled {
+    color: #FFD700;
+    font-size: 1.3rem;
+    transition: all 0.3s;
+  }
+  
+  .star-filled:hover {
+    transform: scale(1.2);
+  }
+  
+  .star-empty {
+    color: #ddd;
+    font-size: 1.3rem;
+  }
+  
+  .comment {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #34495e;
+    margin-bottom: 2rem;
+    font-style: italic;
+    position: relative;
+  }
+  
+  .comment::before,
+  .comment::after {
+    content: '"';
+    color: #4a6fa5;
+    font-size: 1.5rem;
+    opacity: 0.3;
+  }
+  
+  .client-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .client-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(74, 111, 165, 0.2);
+    transition: all 0.3s;
+  }
+  
+  .client-image:hover {
+    transform: scale(1.1);
+    border-color: #4a6fa5;
+  }
+  
+  .client-info h4 {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 1.2rem;
+  }
+  
+  .role {
+    margin: 0;
+    color: #7f8c8d;
+    font-size: 0.9rem;
+  }
+  
+  .nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #4a6fa5;
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+  
+  .nav-button:hover {
+    background: #3a5a80;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  }
+  
+  .prev {
+    left: 0;
+  }
+  
+  .next {
+    right: 0;
+  }
+  
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    gap: 0.8rem;
+  }
+  
+  .dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #ddd;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .dot::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: #4a6fa5;
+    transition: all 0.3s;
+  }
+  
+  .dot.active {
+    background: transparent;
+    transform: scale(1.2);
+  }
+  
+  .dot.active::before {
+    left: 0;
+  }
+  
+  /* Animation for dots */
+  @keyframes dotPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+  }
+  
+  .dot:hover {
+    animation: dotPulse 1s infinite;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .testimonials {
+      padding: 3rem 1rem;
+    }
+    
+    .carousel-container {
+      padding: 0 2rem;
+    }
+    
+    .testimonial-card {
+      padding: 1.5rem;
+    }
+    
+    .nav-button {
+      width: 40px;
+      height: 40px;
+    }
+    
+    .client-image {
+      width: 50px;
+      height: 50px;
+    }
+  }

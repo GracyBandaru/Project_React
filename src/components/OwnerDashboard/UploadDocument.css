@@ -1,0 +1,32 @@
+
+/* Styles for the upload document page */
+.upload-document {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .upload-document input {
+    margin-bottom: 10px;
+  }
+  
+  .upload-document button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .upload-document button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .upload-document button:hover:not(:disabled) {
+    background-color: #0056b3;
+  }
+  
+  .spinner-icon {
+    font-size: 1em;
+  }
+  
