@@ -1,7 +1,7 @@
-// TenantLayout.js
+
 import React, { useState, useEffect } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
-import { FaHome, FaSearch, FaFileAlt, FaMoneyBillAlt, FaUser } from 'react-icons/fa';
+import { FaHome, FaSearch, FaFileAlt, FaMoneyBillAlt, FaUser, FaSignOutAlt } from 'react-icons/fa';
 import { jwtDecode } from 'jwt-decode';
 import './TenantDashboard.css';
 import FloatingHomeButton from '../FloatingHomeButton/FloatingHomeButton';
@@ -27,6 +27,14 @@ function TenantLayout() {
             navigate('/rent-login');
         }
     }, [navigate]);
+
+    const handleLogout = () => {
+        // Remove the authentication token from localStorage
+        localStorage.removeItem('tenantToken');
+     
+        // Log out the user by redirecting them to the login page
+        navigate('/rent-login'); // Redirect to tenant-login page after logout
+      };
 
     return (
         <div className="tenant-dashboard">
@@ -57,6 +65,9 @@ function TenantLayout() {
                     <Link to="/tenant/profile" className="nav-link">
                         <FaUser className="icon" /> Profile
                     </Link>
+                    <button onClick={handleLogout} className="nav-link logout-btn">
+                        <FaSignOutAlt className="icon" /> Logout
+                    </button>
                 </nav>
             </div>
 

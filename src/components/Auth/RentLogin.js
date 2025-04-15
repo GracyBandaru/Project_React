@@ -34,7 +34,7 @@ const RentLogin = () => {
   };
 
   return (
-    <div className="auth-page">
+    <div className="auth-page" style={{ backgroundImage: "url('/assets/auth-bg.jpg')" }}>
       <div className="auth-container">
         <div className="auth-header">
           <FaHome className="auth-icon" />

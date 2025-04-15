@@ -1,12 +1,17 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { FaHome, FaPlus, FaClipboardList, FaFileContract, FaBell, FaUser, FaSignOutAlt } from 'react-icons/fa';
 import './OwnerDashboard.css';
 import FloatingHomeButton from '../FloatingHomeButton/FloatingHomeButton';
 
 function OwnerLayout() {
+  const navigate = useNavigate(); // Initialize the navigate hook
+
   const handleLogout = () => {
-    // Logout logic here
-    console.log('Owner logged out');
+    // Remove the authentication token from localStorage
+    localStorage.removeItem('ownerToken');
+
+    // Log out the user by redirecting them to the login page
+    navigate('/sell-login'); // Redirect to sell-login page after logout
   };
 
   return (
