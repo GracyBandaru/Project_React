@@ -1,74 +1,111 @@
-import { useState } from 'react'; // Add this import
-import { FaMoneyBillWave, FaCheckCircle, FaClock } from 'react-icons/fa';
-import './TenantDashboard.css';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import './Payments.css';
+// Import CSS for notifications
 
-function Payments() {
-  // Mock payments data with useState
-  const [payments] = useState([
-    {
-      id: 1,
-      date: '2023-07-01',
-      amount: '$1200',
-      status: 'paid',
-      property: 'Beachfront Apartment'
-    },
-    {
-      id: 2,
-      date: '2023-08-01',
-      amount: '$1200',
-      status: 'pending',
-      property: 'Beachfront Apartment'
-    }
-  ]);
+const Payments = () => {
+  const [paymentHistory, setPaymentHistory] = useState([]);
+  const [lateNotifications, setLateNotifications] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    const fetchPaymentsAndNotifications = async () => {
+      setLoading(true);
+      setError('');
+      const token = localStorage.getItem('tenantToken');
+
+      try {
+        const historyResponse = await axios.get('http://localhost:5162/api/Payments/history/tenant', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log("Payment History Data:", historyResponse.data);
+        const paymentsWithStatus = historyResponse.data.$values.map(payment => ({
+          ...payment,
+          status: 'Paid',
+        }));
+        setPaymentHistory(paymentsWithStatus);
+
+        const notificationsResponse = await axios.get('http://localhost:5162/api/Payments/notifications/tenant', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log("Late Payment Notifications:", notificationsResponse.data);
+        setLateNotifications(notificationsResponse.data);
+      } catch (err) {
+        setError(err.response?.data?.message || 'Failed to fetch data.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPaymentsAndNotifications();
+  }, []);
+
+  if (loading) {
+    return <div>Loading payment information...</div>;
+  }
+
+  if (error) {
+    return <div className="error">{error}</div>;
+  }
 
   return (
     <div className="payments-container">
       <h2>Payment History</h2>
-      
-      <div className="payment-summary">
-        <div className="summary-card">
-          <h3>Next Payment Due</h3>
-          <p className="amount">$1200</p>
-          <p className="due-date">September 1, 2023</p>
-          <button className="btn-pay">Make Payment</button>
-        </div>
-      </div>
-      
-      <div className="payments-list">
-        <h3>Payment History</h3>
+      {paymentHistory.length > 0 ? (
         <table>
           <thead>
             <tr>
-              <th>Date</th>
+              <th>Invoice Number</th>
               <th>Amount</th>
+              <th>Payment Date</th>
+              <th>Payment Method</th>
               <th>Property</th>
               <th>Status</th>
             </tr>
           </thead>
           <tbody>
-            {payments.map(payment => (
-              <tr key={payment.id}>
-                <td>{payment.date}</td>
-                <td>{payment.amount}</td>
-                <td>{payment.property}</td>
-                <td>
-                  {payment.status === 'paid' ? (
-                    <span className="status-paid">
-                      <FaCheckCircle /> Paid
-                    </span>
-                  ) : (
-                    <span className="status-pending">
-                      <FaClock /> Pending
-                    </span>
-                  )}
-                </td>
+            {paymentHistory.map(payment => (
+              <tr key={payment.invoiceNumber}>
+                <td>{payment.invoiceNumber}</td>
+                <td>₹{payment.amount}</td>
+                <td>{new Date(payment.paymentDate).toLocaleDateString('en-IN')}</td>
+                <td>{payment.paymentMethod}</td>
+                <td>{payment.propertyName}</td>
+                <td className="status paid">{payment.status}</td>
               </tr>
             ))}
           </tbody>
         </table>
+      ) : (
+        <p>No payment history available.</p>
+      )}
+
+      <div className="late-payment-notifications-container">
+        <h2>Late Payment Notifications</h2>
+        {lateNotifications.length > 0 ? (
+          <ul>
+            {lateNotifications.map(notification => (
+              <li key={notification.notificationID}>
+                <p><strong>Property:</strong> {notification.propertyAddress}</p>
+                <p><strong>Message:</strong> {notification.message}</p>
+                <p><strong>Sent On:</strong> {new Date(notification.createdAt).toLocaleDateString('en-IN')}</p>
+                {notification.daysLate !== undefined && (
+                  <p className="late-days"><strong>Days Late:</strong> {notification.daysLate}</p>
+                )}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="no-notifications">No late payment notifications at this time.</p>
+        )}
       </div>
     </div>
   );
-}
+};
 
 export default Payments;

@@ -60,8 +60,9 @@ function TenantLayout() {
                         <FaFileAlt className="icon" /> My Leases
                     </Link>
                     <Link to="/tenant/payments" className="nav-link">
-                        <FaMoneyBillAlt className="icon" /> Payments
+                            <FaMoneyBillAlt className="icon" /> Payments
                     </Link>
+                    
                     <Link to="/tenant/profile" className="nav-link">
                         <FaUser className="icon" /> Profile
                     </Link>

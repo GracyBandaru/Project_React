@@ -1,0 +1,126 @@
+/* Payments.css */
+
+.payments-container {
+    padding: 20px;
+  }
+  
+  .payments-container h2 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .payments-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 30px; /* Add some space below the table */
+  }
+  
+  .payments-container th,
+  .payments-container td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .payments-container th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .payments-container tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .payments-container tbody tr:hover {
+    background-color: #eee;
+  }
+  
+  .payments-container p {
+    font-style: italic;
+    color: #777;
+  }
+  
+  .payments-container .error {
+    color: red;
+    margin-top: 10px;
+    border: 1px solid red;
+    background-color: #ffe0e0;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .payments-container th.status,
+  .payments-container td.status {
+    text-align: center;
+  }
+  
+  .payments-container td.status.paid {
+    color: green;
+    font-weight: bold;
+  }
+  
+  /* LatePaymentNotifications.css */
+  .late-payment-notifications-container {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .late-payment-notifications-container h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #cc0000; /* Red color for emphasis */
+  }
+  
+  .late-payment-notifications-container ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .late-payment-notifications-container li {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+  
+  .late-payment-notifications-container li p {
+    margin: 5px 0;
+  }
+  
+  .late-payment-notifications-container li strong {
+    font-weight: bold;
+  }
+  
+  .late-payment-notifications-container .late-days {
+    color: #ff6600; /* Orange color for days late */
+    font-weight: bold;
+  }
+  
+  .late-payment-notifications-container p:last-child {
+    margin-bottom: 0;
+  }
+  
+  .late-payment-notifications-container p.no-notifications {
+    font-style: italic;
+    color: #777;
+  }
+  
+  /* Optional responsiveness for tables */
+  @media (max-width: 768px) {
+    .payments-container table {
+      overflow-x: auto;
+      display: block;
+    }
+  
+    .payments-container th,
+    .payments-container td {
+      white-space: nowrap;
+    }
+  }
